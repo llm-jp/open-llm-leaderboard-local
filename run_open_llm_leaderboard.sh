@@ -45,11 +45,11 @@ echo "Result dir: ${result_dir}"
 if [ "${PEFT_BASE_MODEL}" != "" ]; then
     echo "PEFT base model: ${PEFT_BASE_MODEL}"
     HARNESS_MODEL_TYPE="hf-causal-experimental"
-    HARNESS_MODEL_TYPE="pretrained=${PEFT_BASE_MODEL},revision=main,peft=${target_model}"
+    HARNESS_MODEL_ARGS="pretrained=${PEFT_BASE_MODEL},revision=main,peft=${target_model},trust_remote_code=True"
 else
     # default
     HARNESS_MODEL_TYPE="hf-causal"
-    HARNESS_MODEL_ARGS="pretrained=${target_model},revision=main"
+    HARNESS_MODEL_ARGS="pretrained=${target_model},revision=main,trust_remote_code=True"
 fi
 
 WRITE_OUT_PATH=${WRITE_OUT_PATH}/${target_model}
