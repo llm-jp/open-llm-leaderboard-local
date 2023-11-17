@@ -14,17 +14,17 @@ Huggingface の Open LLM Leaderboard と同様の検証をローカルで実施�
 - Python 3.9 以上
 - ライブラリは lm-evaluation-harness + wandb を使用します
   ```bash
-    git clone https://github.com/llm-jp/open-llm-leaderboard-local.git
+    git clone --recuresive https://github.com/llm-jp/open-llm-leaderboard-local.git
     cd lm-evaluation-harness  # lm-evaluation-harness の commit-id が b281b09 であることを確認
     pip install -e .
     pip install wandb
   ```
 
 ## 動かし方
-下記の通りにして `run_open_llm_leaderboard.sh` を実行することで wandb への結果のアップロードまで自動で行われます。
+下記の通りにして `run_open_llm_leaderboard.sh` を実行することで検証から wandb への結果のアップロードまで自動で行われます。
 
 1. [前述](#環境)のライブラリ設定を行う
-2. root に置いてある run_open_llm_leaderboard.sh の `HF_HOME` と `WANDB_ENTITY` と `WANDB_PROJECT` を記入
+2. root に置いてある `run_open_llm_leaderboard.sh` の `HF_HOME` と `WANDB_ENTITY` と `WANDB_PROJECT` を記入
 3. `wandb login` を実行
 4. `cp ./run_open_llm_leaderboard.sh ./lm-evaluation-harness && cp ./save_wandb.py ./lm-evaluation-harness  # スクリプトを lm-evaluation-harness に配置する`
 5. `bash run_open_llm_leaderboard.sh -w {検証したいモデル名} {バッチサイズ} {出力ディレクトリ}` を実行すると出力ディレクトリに結果が保存され、その中身が wandb にアップロードされる
