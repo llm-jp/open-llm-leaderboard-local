@@ -27,7 +27,8 @@ Huggingface の Open LLM Leaderboard と同様の検証をローカルで実施�
 2. root に置いてある `run_open_llm_leaderboard.sh` の `HF_HOME` と `WANDB_ENTITY` と `WANDB_PROJECT` を記入
 3. `wandb login` を実行
 4. `cp ./run_open_llm_leaderboard.sh ./lm-evaluation-harness && cp ./save_wandb.py ./lm-evaluation-harness  # スクリプトを lm-evaluation-harness に配置する`
-5. `bash run_open_llm_leaderboard.sh -w {検証したいモデル名} {バッチサイズ} {出力ディレクトリ}` を実行すると出力ディレクトリに結果が保存され、その中身が wandb にアップロードされる
+5. `cd lm-evaluation-harness`
+6. `bash run_open_llm_leaderboard.sh -w {検証したいモデル名} {バッチサイズ} {出力ディレクトリ}` を実行すると出力ディレクトリに結果が保存され、その中身が wandb にアップロードされる
 
 なお、2番で設定する変数は下記を意味しています。
 
