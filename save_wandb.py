@@ -146,6 +146,8 @@ def upload_wandb(
         run.log({WANDB_TABLE_NAME: lm_evaluation_harness_table})
 
         # save artifact
+        # TODO: extract_dir_info は SingleTaskResult に移動する
+        # TODO: task ごとに artifact を保存するか分岐させる
         result_json_dir = extract_dir_info(data, data_type="result")
         result_artifact_name = target_model.replace("/", ".") + ".result"
         result_artifact = wandb.Artifact(
