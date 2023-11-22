@@ -38,6 +38,9 @@ Huggingface の Open LLM Leaderboard と同様の検証をローカルで実施�
 
 wandb のエンティティ、プロジェクトに関しては[公式ドキュメント](https://docs.wandb.ai/)をご確認ください。
 
+> [!CAUTION]
+> 2023年11月時点で `run_open_llm_leaderboard.sh` は一つのモデル評価におよそ一日かかります。
+
 ## オプションなどの詳細
 オプションを設定することで以下のようなことが可能です。
 - lm-evaluation-harness 実行時のモデル出力は wandb にアップロードしない
