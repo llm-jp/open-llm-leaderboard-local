@@ -9,6 +9,7 @@ Huggingface の Open LLM Leaderboard と同様の検証をローカルで実施�
   - [モデル出力は wandb にアップロードしない方法](#モデル出力は-wandb-にアップロードしない方法)
   - [PEFT モデルを動かす方法](#peft-モデルを動かす方法)
 - [たくさんのモデルを自動で動かす例](#たくさんのモデルを自動で動かす例)
+- [タスクを追加検証したい場合](#タスクを追加検証したい場合)
 
 ## 環境
 - Python 3.9 以上
@@ -130,3 +131,14 @@ do
     bash run_open_llm_leaderboard.sh -w -l ${base_peft[0]} ${base_peft[1]} 2 ${result_path}
 done
 ```
+
+## タスクを追加検証したい場合
+既に wandb に登録済みのモデルに対して、新たにタスクを追加したい場合は下記のスクリプトを実行してください。
+
+```bash
+bash run_open_llm_leaderboard_add_task.sh -w {検証したいモデル名} {バッチサイズ} {出力ディレクトリ}
+```
+
+パラメータなどは `run_open_llm_leaderboard.sh` と同様です。
+
+（wandb へ結果を保存するスクリプトを `save_wandb.py` から `additional_save_wandb.py` へ変更しています。）
