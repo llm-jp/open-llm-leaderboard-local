@@ -1,5 +1,5 @@
 # Open LLM Leaderboard Local
-Huggingface の Open LLM Leaderboard と同様の検証をローカルで実施するスクリプト
+Huggingface の [Open LLM Leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard) と同様の検証をローカルで実施するスクリプト
 
 ## 目次
 
@@ -140,5 +140,6 @@ bash run_open_llm_leaderboard_add_task.sh -w {検証したいモデル名} {バ�
 ```
 
 パラメータなどは `run_open_llm_leaderboard.sh` と同様です。
+（環境変数の設定も同様に実施してください）
 
 （wandb へ結果を保存するスクリプトを `save_wandb.py` から `additional_save_wandb.py` へ変更しています。）
