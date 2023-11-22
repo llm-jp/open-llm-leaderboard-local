@@ -136,6 +136,8 @@ done
 既に wandb に登録済みのモデルに対して、新たにタスクを追加したい場合は下記のスクリプトを実行してください。
 
 ```bash
+cp ./run_open_llm_leaderboard_add_task.sh ./lm-evaluation-harness && cp ./additional_save_wandb.py ./lm-evaluation-harness
+cd lm-evaluation-harness
 bash run_open_llm_leaderboard_add_task.sh -w {検証したいモデル名} {バッチサイズ} {出力ディレクトリ}
 ```
 
