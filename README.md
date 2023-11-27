@@ -10,6 +10,8 @@ Huggingface の [Open LLM Leaderboard](https://huggingface.co/spaces/HuggingFace
   - [PEFT モデルを動かす方法](#peft-モデルを動かす方法)
 - [たくさんのモデルを自動で動かす例](#たくさんのモデルを自動で動かす例)
 - [タスクを追加検証したい場合](#タスクを追加検証したい場合)
+- [その他の注意事項](#その他の注意事項)
+  - [gsm8k 実施時に ValueError が出る](#gsm8k-実施時に-valueerror-が出る)
 
 ## 環境
 - Python 3.9 以上
@@ -145,3 +147,24 @@ bash run_open_llm_leaderboard_add_task.sh -w {検証したいモデル名} {バ�
 （環境変数の設定も同様に実施してください）
 
 （wandb へ結果を保存するスクリプトを `save_wandb.py` から `additional_save_wandb.py` へ変更しています。）
+
+## その他の想定されるエラー
+日本語モデルを評価する際、次のようなエラーが出る場合があります。
+
+- gsm8k 実施時に ValueError が出る
+
+### gsm8k 実施時に ValueError が出る
+
+gsm8k 実施時に以下のようなエラーが出る場合があります。
+
+```
+(primary_until,) = self.tok_encode(until[0])
+ValueError: too many values to unpack (expected 1)
+```
+
+このエラーは lm-evaluation-harness の `hf-causal` を使用している際に発生することがあります。
+https://github.com/EleutherAI/lm-evaluation-harness/issues/628
+
+このエラーが発生した場合、 `run_open_llm_leaderboard_add_task.sh` 中の `HARNESS_MODEL_TYPE=hf-causal-experimental` と設定して再度動かしてください。
+
+（デフォルトは Huggingface の Open LLM Leaderboard に従って `hf-causal` にしています。）
