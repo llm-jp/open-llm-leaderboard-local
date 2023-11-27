@@ -10,7 +10,7 @@ Huggingface の [Open LLM Leaderboard](https://huggingface.co/spaces/HuggingFace
   - [PEFT モデルを動かす方法](#peft-モデルを動かす方法)
 - [たくさんのモデルを自動で動かす例](#たくさんのモデルを自動で動かす例)
 - [タスクを追加検証したい場合](#タスクを追加検証したい場合)
-- [その他の注意事項](#その他の注意事項)
+- [その他の想定されるエラー](#その他の想定されるエラー)
   - [gsm8k 実施時に ValueError が出る](#gsm8k-実施時に-valueerror-が出る)
 
 ## 環境
