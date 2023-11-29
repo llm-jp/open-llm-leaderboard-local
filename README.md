@@ -11,7 +11,7 @@ Huggingface の [Open LLM Leaderboard](https://huggingface.co/spaces/HuggingFace
 - [たくさんのモデルを自動で動かす例](#たくさんのモデルを自動で動かす例)
 - [タスクを追加検証したい場合](#タスクを追加検証したい場合)
 - [その他の想定されるエラー](#その他の想定されるエラー)
-  - [gsm8k 実施時に ValueError が出る](#gsm8k-実施時に-valueerror-が出る)
+  - [gsm8k または drop 実施時に ValueError が出る](#gsm8k-または-drop-実施時に-valueerror-が出る)
 
 ## 環境
 - Python 3.9 以上
@@ -35,7 +35,7 @@ Huggingface の [Open LLM Leaderboard](https://huggingface.co/spaces/HuggingFace
 
 なお、2番で設定する変数は下記を意味しています。
 
-- `HF_HOME`: Huggingface の各種データが保存されるパス
+- `HF_HOME`: Huggingface の各種データ、トークン情報などが保存されるパス
 - `WANDB_ENTITY`: wandb のエンティティ名
 - `WANDB_PROJECT`: wandb のプロジェクト名
 
@@ -151,11 +151,11 @@ bash run_open_llm_leaderboard_add_task.sh -w {検証したいモデル名} {バ�
 ## その他の想定されるエラー
 日本語モデルを評価する際、次のようなエラーが出る場合があります。
 
-- gsm8k 実施時に ValueError が出る
+- gsm8k または drop 実施時に ValueError が出る
 
-### gsm8k 実施時に ValueError が出る
+### gsm8k または drop 実施時に ValueError が出る
 
-gsm8k 実施時に以下のようなエラーが出る場合があります。
+gsm8k や drop 実施時に以下のようなエラーが出る場合があります。
 
 ```
 (primary_until,) = self.tok_encode(until[0])
