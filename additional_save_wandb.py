@@ -28,6 +28,7 @@ def get_args() -> argparse.Namespace:
     parser.add_argument("--wandb_entity_name", required=True, help="WandB の Entity 名")
     parser.add_argument("--wandb_project_name", required=True, help="WandB の Project 名")
     parser.add_argument("--tasks", nargs="+", required=True, help="追加評価対象のタスク名")
+    parser.add_argument("--is_update_task", action="store_true", help="既存のタスクを更新するかどうか")
     return parser.parse_args()
 
 
@@ -59,6 +60,7 @@ def upload_wandb(
     project_name: str,
     target_model: str,
     elapsed_time: int,
+    is_update_task: bool,
 ) -> None:
     """wandb に Upload を試みる"""
     def get_run(entity_name: str, project_name: str, target_model: str) -> wandb.apis.public.Run:
@@ -121,7 +123,14 @@ def upload_wandb(
         updated_table.data[0][column2index["Elapsed Time"]] += elapsed_time
 
         for task_name, task_result in data.items():
-            updated_table.add_column(task_name, [post_process_results(task_result.results, task_name)])
+            if task_name in updated_table.columns and not is_update_task:
+                # TODO: 本来はエラーを出すべきだが、そうすると wandb 上で Table が消えてしまうため、警告を出す
+                warnings.warn(f"Task: {task_name} は既に wandb に存在しています。")
+            elif task_name in updated_table.columns and is_update_task:
+                warnings.warn(f"Task: {task_name} を更新します。")
+                updated_table.data[0][column2index[task_name]] = post_process_results(task_result.results, task_name)
+            else:
+                updated_table.add_column(task_name, [post_process_results(task_result.results, task_name)])
 
         # average の再計算
         # model_name と古い Average と elapsed_time を除いて、average を計算する
@@ -159,7 +168,7 @@ def main():
 
     # wandb に Upload する
     upload_wandb(
-        data, args.wandb_entity_name, args.wandb_project_name, args.target_model, args.elapsed_time
+        data, args.wandb_entity_name, args.wandb_project_name, args.target_model, args.elapsed_time, args.is_update_task
     )
 
 
