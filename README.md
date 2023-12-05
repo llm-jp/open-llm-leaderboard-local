@@ -155,7 +155,7 @@ bash run_open_llm_leaderboard_add_task.sh -w {検証したいモデル名} {バ�
 
 ### gsm8k 実施時に ValueError が出る
 
-gsm8k や drop 実施時に以下のようなエラーが出る場合があります。
+gsm8k 実施時に以下のようなエラーが出る場合があります。
 
 ```
 (primary_until,) = self.tok_encode(until[0])
